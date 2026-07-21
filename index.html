@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIILE - เป่ายิ้งฉุบ</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>✊✋✌️ NIILE - เป่ายิ้งฉุบ</h1>
+
+        <!-- ส่วนตั้งค่า -->
+        <div class="setup-box" id="setupScreen">
+            <div class="select-group">
+                <label>🎯 เลือกโหมดการเล่น:</label>
+                <select id="modeSelect">
+                    <option value="robot">สู้กับหุ่นยนต์/AI</option>
+                    <option value="self">เล่นแข่งกับตัวเอง</option>
+                    <option value="2">PvP 2 คน</option>
+                    <option value="4">PvP 4 คน</option>
+                    <option value="6">PvP 6 คน</option>
+                </select>
+            </div>
+            <div class="select-group">
+                <label>⚡ ระดับความยาก AI:</label>
+                <select id="diffSelect">
+                    <option value="easy">ง่าย</option>
+                    <option value="normal">ปานกลาง</option>
+                    <option value="hard">ยาก</option>
+                </select>
+            </div>
+            <div class="camera-area">
+                <video id="userCamera" autoplay playsinline muted></video>
+                <p id="camStatus">📷 กำลังเปิดกล้อง...</p>
+            </div>
+            <button class="start-btn" onclick="startGame()">เริ่มเกมเลย!</button>
+            <div class="settings-area">
+                <h3>⚙️ การตั้งค่า</h3>
+                <div class="select-group">
+                    <label>ภาษา:</label>
+                    <select id="langSelect" onchange="changeLang()">
+                        <option value="th" selected>ไทย</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- แดชบอร์ดอันดับ -->
+        <div class="dashboard" id="dashboard">
+            <h2>🏆 แดชบอร์ดอันดับ (รองรับสูงสุดอันดับ 24,397)</h2>
+            <div class="rank-list" id="rankList"></div>
+        </div>
+
+        <!-- ส่วนเล่นเกม -->
+        <div class="game-area" id="gameScreen">
+            <div class="players-grid" id="playersContainer"></div>
+            <div class="result-text" id="resultText"></div>
+            <div class="choice-btns">
+                <button class="choice-btn" onclick="playRound('rock')" title="ค้อน">✊</button>
+                <button class="choice-btn" onclick="playRound('paper')" title="กระดาษ">✋</button>
+                <button class="choice-btn" onclick="playRound('scissors')" title="กรรไกร">✌️</button>
+            </div>
+            <button class="back-btn" onclick="backToSetup()">กลับไปตั้งค่า</button>
+            <div class="rule-box">
+                📜 กฎ: ✊ค้อนชนะกรรไกร | ✋กระดาษชนะค้อน | ✌️กรรไกรชนะกระดาษ
+            </div>
+        </div>
+
+        <!-- จุดข้อความลับ ตรงกลางหน้าเว็บ -->
+        <div class="secret-center" id="secretSpot">
+            <div class="secret-content">
+                <p class="secret-head">สวัสดีครับพวกเรา</p>
+                <p class="secret-text">พวกเราอยากสนับสนุน Roblox นิดหน่อยครับ อยากให้มีคนรู้จักและเล่นกันเยอะขึ้นเฉยๆ น่ะครับ</p>
+                <a href="https://www.roblox.com/" target="_blank" class="secret-link">กดที่นี่เพื่อไปโหลดเล่นกันครับ</a>
+            </div>
+        </div>
+
+        <!-- เรื่องเล่าแถมท้าย -->
+        <div class="fun-note">
+            <p>🍗 เรื่องจริง: ไดโนเสาร์ไม่ได้สูญพันธุ์ — พวกมันแค่วิวัฒนาการกลายเป็นไก่ทอดที่เรากินกันวันละหลายตัว!</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
