@@ -1,0 +1,103 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans Thai', sans-serif; }
+:root {
+    --main: #e94560; --second: #00b4d8; --gold: #ffd60a;
+    --win: #38b000; --lose: #d00000; --draw: #ff9e00;
+    --bg1: #1a1a2e; --bg2: #16213e; --bg3: #0f3460;
+    --thai-red: #A51C30; --thai-gold: #FFD700;
+}
+body {
+    background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+    min-height: 100vh; color: white; padding: 15px; position: relative;
+}
+.container { max-width: 1100px; margin: 0 auto; text-align: center; }
+h1 { font-size: 2.2rem; margin-bottom: 20px; text-shadow: 0 0 15px var(--main); }
+
+.setup-box, .dashboard, .game-area {
+    background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px;
+    margin-bottom: 20px; backdrop-filter: blur(8px); border: 1px solid rgba(255,215,0,0.2);
+}
+.select-group {
+    margin: 12px 0; display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center; align-items: center;
+}
+label { font-size: 1.05rem; margin-right: 8px; }
+select, button {
+    padding: 10px 15px; border: none; border-radius: 8px;
+    font-size: 1rem; cursor: pointer; transition: 0.3s;
+}
+select { background: var(--thai-red); color: white; font-weight: bold; }
+button { background: var(--second); color: white; font-weight: bold; }
+button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,180,216,0.4); }
+.start-btn { background: #f77f00; font-size: 1.2rem; padding: 12px 35px; margin-top: 10px; }
+.back-btn { background: var(--lose); margin-top: 15px; }
+
+.camera-area { margin: 15px 0; }
+#userCamera {
+    width: 200px; height: 150px; border-radius: 10px; border: 3px solid var(--thai-red);
+    object-fit: cover; transform: scaleX(-1);
+}
+.settings-area { margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); }
+
+.rank-list { margin-top: 15px; max-height: 250px; overflow-y: auto; }
+.rank-item {
+    display: flex; justify-content: space-between; padding: 10px 15px;
+    margin: 5px 0; border-radius: 8px; background: rgba(0,0,0,0.2);
+}
+.rank-top { background: rgba(255,215,0,0.2); border-left: 4px solid var(--thai-gold); }
+
+.players-grid { display: grid; gap: 12px; margin: 20px 0; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.player-card { background: rgba(255,255,255,0.08); padding: 12px; border-radius: 10px; }
+.player-name { font-weight: bold; margin-bottom: 5px; }
+.player-move { font-size: 2.5rem; margin: 8px 0; }
+.score { font-size: 1.2rem; color: var(--gold); font-weight: bold; }
+
+.choice-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 15px 0; }
+.choice-btn {
+    font-size: 2.2rem; padding: 12px 22px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); border: 2px solid transparent;
+}
+.choice-btn:hover { background: var(--thai-red); transform: scale(1.1); border-color: white; }
+.result-text { font-size: 1.6rem; margin: 15px 0; font-weight: bold; }
+.win { color: var(--win); } .lose { color: var(--lose); } .draw { color: var(--draw); }
+.rule-box { margin-top: 15px; font-size: 0.95rem; opacity: 0.9; }
+
+/* === จุดข้อความลับ ซ่อนไว้ตรงกลาง === */
+.secret-center {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 120px; height: 120px; border-radius: 50%;
+    background: rgba(255,255,255,0.03); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10; border: 2px solid rgba(255,255,255,0.05);
+    transition: all 0.5s ease;
+}
+.secret-center:hover {
+    width: 90%; height: auto; border-radius: 15px; padding: 30px;
+    background: rgba(0,0,0,0.9); border-color: var(--thai-red);
+}
+.secret-content {
+    opacity: 0; transform: scale(0.8); transition: all 0.5s ease;
+}
+.secret-center:hover .secret-content { opacity: 1; transform: scale(1); }
+.secret-head {
+    color: var(--thai-red); font-size: 1.8rem; font-weight: bold; margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(165,28,48,0.5);
+}
+.secret-text { color: white; font-size: 1rem; margin-bottom: 20px; line-height: 1.6; }
+.secret-link {
+    color: rgba(0,0,0,0); font-weight: bold; font-size: 1.2rem;
+    padding: 10px 25px; background: rgba(255,255,255,0.1); border-radius: 8px;
+    transition: all 0.5s ease; text-decoration: none;
+}
+.secret-center:hover .secret-link { color: black; background: var(--thai-gold); }
+.secret-link:hover { background: white; transform: scale(1.05); display: inline-block; }
+
+.fun-note {
+    margin-top: 40px; padding: 15px; background: rgba(0,0,0,0.2);
+    border-radius: 10px; font-size: 0.9rem; opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+    h1 { font-size: 1.8rem; }
+    .players-grid { grid-template-columns: repeat(2, 1fr); }
+    .secret-head { font-size: 1.4rem; }
+}
